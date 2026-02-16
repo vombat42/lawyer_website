@@ -1,19 +1,98 @@
 {% extends './base.html' %}
 {% load static %}
+{% load lawyer_tags %}
 
 
 
 {% block content %}
-<h1 style="text-align: center;">ЮРИСТ</h1>
-<hr />
-<div class="list-wrapper">
-    <p>Регисрация, внесение изменений ИП и ООО</p>
-    <p>Сопровождение хозяйственной деятельности предприятий</p>
-    <p>Сопровождение сделок с недвижимостью, регистрация недвижимости</p>
-    <p>Получение лицензии на алкоголь</p>
-    <p>Восстановление документов, наследственные дела, развод</p>
-    <p>Составление любых видов документов: исковые заявления, жалобы, запросы, письма, договоры и другое</p>
-    <p>Консультации на месте и удаленно</p>
-</div>
+  <div id="start"></div>
+  <div class="content">
+
+    <div class="section-title">Мои преимущества</div>
+    <div class="advantages">
+        {% get_advantages as advantages %}
+        {% for a in advantages %}
+            <div class="advantages-item">{{a.text}}<img src="{% static 'lawyer/img/check_mark.png'%}"></div>
+        {% endfor %}
+    </div>
+
+    {% get_service_categories as service_categories %}
+    {% get_services as services %}
+    {% for c in service_categories %}
+        <div id="{{c.anchor}}"></div>
+        <div class="section-title">{{c.description}}</div>
+            <div class="services">
+                {% for s in services %}
+                    {% if s.category == c %}
+                        <div class="services-item">
+                            <img class="services-item-img" src="{{s.pic.url}}">
+                            <p>{{s.text}}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <div id="request"></div>
+    <div class="section-title">Оставить сообщение</div>
+    <div class="request">
+
+      <div class="request-info-wrapper">
+        <div class="request-info-title">Расскажите о вашей ситуации</div>
+        <div class="request-info-text">Заполните форму или позвоните — я отвечу в ближайшее время. Вместе мы разберёмся в вашей ситуации и найдём лучшее решение.</div>
+        <div class="request-info-title">Мои контакты:</div>
+            {% get_contacts as contacts %}
+            {% for c in contacts %}
+                <a class="request-info-link" href={{c.href}} target="_blank" rel="noopener noreferrer">
+                    <div class="link-icon-txt"><img src={{c.pic.url}} alt="{{c.alt}}"><div>{{c.text}}</div></div>
+                </a>
+            {% endfor %}
+<!--        <a class="request-info-link" href="tel:+79495372567" target="_blank" rel="noopener noreferrer">-->
+<!--          <div class="link-icon-txt"><img src="../img/phone_01.png" alt="Телефон"><div>+7(949)537-25-67</div></div>-->
+<!--        </a>-->
+<!--        <a class="request-info-link" href="https://t.me/+79495372567" target="_blank" rel="noopener noreferrer">-->
+<!--          <div class="link-icon-txt"><img src="../img/tg_01.png" alt="Telegram"><div>Telegram</div></div>-->
+<!--        </a>-->
+<!--        <a class="request-info-link" href="https://vk.com/id78401004" target="_blank" rel="noopener noreferrer">-->
+<!--          <div class="link-icon-txt"><img src="../img/vk_01.png" alt="ВКонтакте"><div>ВКонтакте</div></div>-->
+<!--        </a>-->
+<!--        <a class="request-info-link" href="mailto:volodiashapiro@yandex.ru" target="_blank" rel="noopener noreferrer">-->
+<!--          <div class="link-icon-txt"><img src="../img/email_01.png" alt="E-Mail"><div>volodiashapiro@yandex.ru</div></div>-->
+<!--        </a>-->
+      </div>
+
+      <div class="request-form-wrapper">
+        <div class="request-info-title">Оставить сообщение на сайте:</div>
+        <form class="request-form" action="/submit" method="post">
+          <input class="name" name="name" type="text" placeholder="Ваше имя *" required>
+          <input
+            class="telephone"
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="+7 (___) ___-___-___ *"
+            pattern="\+7\s?[\(]{0,1}[0-9]{3}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
+            title="Формат: +7 (___) ___-__-__"
+            required
+          >
+          <textarea
+                class="message"
+                id="message"
+                name="message"
+                rows="5"
+                maxlength="1000"
+                placeholder="Ваше сообщение *"
+                required
+          ></textarea>
+          <!-- <input class="message" name="message" type="text" placeholder="Ваше сообщение *" required> -->
+          <button class="form-button" type="submit">Отправить сообщение</button>
+          <div class="request-info-text">Нажимая "Отправить сообщение", Вы даете согласие на обработку данных!</div>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
 
 {% endblock %}
