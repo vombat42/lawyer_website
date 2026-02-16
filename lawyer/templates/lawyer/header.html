@@ -1,0 +1,76 @@
+{% load static %}
+{% load lawyer_tags %}
+
+<header>
+      <div class="header-top-wrapper">
+      <div class="header-top">
+          {% get_contacts as contacts %}
+          {% for c in contacts %}
+            <a class="header-top-item" href="{{c.href}}" target="_blank" rel="noopener noreferrer">
+                <div class="link-icon-txt"><img src="{% static c.src %}" alt="{{c.alt}}"><div>{{c.text}}</div></div>
+            </a>
+          {% endfor %}
+
+      </div>
+    </div>
+
+  <div class="header-main">
+    <div class="header-logo">
+      <img src="{% static 'lawyer/img/logo_02.png' %}">
+    </div>
+
+    <div class="header-menu">
+      <a class="header-menu-item" href="#service-private">Частным лицам</a>
+      <a class="header-menu-item" href="#service-business">Бизнесу</a>
+      <a class="header-menu-item" href="#request">Оставить сообщение</a>
+    </div>
+
+    <div class="header-hamburger-menu">
+      <!-- Кнопка с тремя полосками (гамбургер) -->
+      <button class="hamburger-btn" id="hamburgerBtn">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+      </button>
+      <!-- Выпадающее меню -->
+      <div class="dropdown-menu" id="dropdownMenu">
+        <a class="header-hamburger-menu-item" href="#service-private">Частным лицам</a>
+        <a class="header-hamburger-menu-item" href="#service-business">Бизнесу</a>
+        <a class="header-hamburger-menu-item" href="#request">Оставить сообщение</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-title-wrapper">
+    <div class="header-title">
+        <p>ВАШ ЮРИСТ</p>
+        <p>в Донецкой Народной Республике</p>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="header-outer">
+      <a href="{% url 'lawyer:home' %}" class="logo-link">
+        <img src="{% static 'lawyer/img/logo_02.png' %}"/>
+      </a>
+      <div class="header-block">
+        <div class="header-up">
+          <div class="header-info">
+            <a class="header-phone" href="tel:+7(123)456-78-01">+7(123)456-78-01</a>
+            <a class="header-tg" href="tel:+7(123)456-78-02">+7(123)456-78-02</a>
+            <div class="header-text">Нужна помощь юриста - звоните или пишите!</div>
+          </div>
+
+        </div>
+
+        <div class="header-menu">
+          {% get_menu as menu %}
+          {% for m in menu %}
+            <a class="header-menu-item-link" href="{{m.url_name}}">{{m.title}}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</header>

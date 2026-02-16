@@ -1,0 +1,265 @@
+:root {
+  --main_bg_color:      #212f3c;
+  --main_font_color:    #aeb6bf;
+  --invert_bg_color:    #7fb3d5;
+  --invert_font_color:  #154360;
+  --active-item-color:  #7d6608;
+  --link_color:         #3498db;
+  --link_hover_color:   #aed6f1;
+  --phone_color:        #f5b041;
+  --phone_hover_color:  #fdebd0;
+  --header-color:       #1f588d;
+  --footer-color:       #1f588d;
+  --form-color:         #1f588d;
+  --form-button-color:  greenyellow;
+  --primary_font_family:    Helvetica, sans-serif;
+  --secondary_font_family:  Optima, sans-serif;
+  --phones_font_family:     Optima, sans-serif;
+  --radius: 15px;
+  --button_radius: 10px;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+    background-color: var(--main_bg_color);
+    color: var(--main_font_color);
+    font-family: var(--secondary_font_family);
+}
+
+a {
+    color: var(--link_color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.to-column {
+    flex-direction: column;
+}
+
+/* ------------------------------------------------------- */
+/* ----------------------- header -------------------------*/
+/* ------------------------------------------------------- */
+
+.header {
+    background-color: var(--header-color);
+}
+
+.header-outer  {
+    display: flex;
+    height: 150px;
+    width: 1600px;
+    margin: auto;
+    border: 4px solid red;
+}
+
+.logo-link {
+    display: inline-block;
+    height: 100%;
+}
+
+.logo-link img {
+    height: 100%;
+}
+
+.header-block {
+    width: 100%;
+}
+
+.header-up {
+    display: flex; /* Включаем Flexbox */
+    justify-content: flex-end;
+    height: 110px;
+    align-items: center;
+}
+
+.header-info {
+    width: 100%;
+    text-align: center;
+}
+
+.header-phone {
+    display: inline-block;
+    margin: 10px 10px 0px 10px;
+    padding: 10px 20px;
+    color: var(--phone_color);
+    text-align: center;
+/*    text-decoration: none;*/
+    border-radius: var(--radius);
+    font-family: var(--phones_font_family);
+    font-size: 20px;
+    border: 1px solid;
+/*    cursor: pointer;*/
+    transition: color 0.3s ease;
+}
+
+.header-phone:hover {
+    color: var(--phone_hover_color);
+}
+
+.header-text {
+    color: var(--main_font_color);
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-family:  var(--primary_font_family);
+    font-size: 20px;
+}
+
+.header-up-right {
+    text-align: right;
+    width: 250px;
+}
+
+.header-search {
+    text-align: right;
+    height: 100%;
+    width: 250px;
+    margin-top: 10px;
+}
+
+.header-user {
+    display: inline-block;
+    margin: 0px 10px 0px 0px;
+    padding: 5px 10px;
+    color: var(--phone_color);
+    text-align: center;
+    border-radius: var(--radius);
+    font-family: var(--phones_font_family);
+    font-size: 20px;
+    border: 1px solid;
+}
+
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.user-icon {
+    cursor: pointer; /* Курсор в виде указателя */
+}
+
+.user-icon img {
+    width: 40px; /* Размер иконки */
+    height: 40px;
+    border-radius: 50%; /* Круглая иконка */
+    vertical-align: middle;
+}
+
+.user-name {
+    color: yellowgreen;
+    margin: 0px 10px 0px 0px;
+}
+
+.user-dropdown-menu {
+    display: none; /* Скрываем меню по умолчанию */
+    position: absolute;
+    right: 0; /* Выравниваем по правому краю */
+    background-color: var(--main_bg_color);
+    min-width: 160px; /* Ширина меню */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Тень */
+    z-index: 1; /* Чтобы меню было поверх других элементов */
+    border-radius: 4px; /* Скругление углов */
+    overflow: hidden; /* Чтобы скругления работали */
+    border: 1px solid var(--link_color);
+}
+
+.user-dropdown-menu a {
+    color: var(--main_font_color); /* Цвет текста */
+    padding: 12px 16px; /* Отступы */
+    text-decoration: none; /* Убираем подчёркивание */
+    display: block; /* Каждый элемент на новой строке */
+}
+
+.user-dropdown-menu a:hover {
+    color: var(--link_hover_color); /* Цвет при наведении */
+}
+
+/* Показываем меню, когда добавляется класс "show" */
+.user-dropdown-menu.show {
+    display: block;
+}
+
+.user-escape {
+    color: red;
+    padding: 12px 16px;
+    font-size: 16px;
+    text-decoration: none; /* Убираем подчёркивание */
+    display: block; /* Каждый элемент на новой строке */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.user-escape:hover,
+.user-escape:focus {
+    text-decoration: none;
+}
+
+.header-user-button {
+    display: inline-block;
+    margin: 0px 10px 0px 0px;
+    padding: 5px 10px;
+/*    color: var(--phone_color);*/
+    color: yellowgreen;
+    text-align: center;
+    border-radius: var(--radius);
+    font-family: var(--phones_font_family);
+    font-size: 20px;
+    border: 1px solid;
+}
+
+.header-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 50px 0px 50px;
+    gap: 40px;
+}
+
+.header-menu-item-link {
+    display: inline-block;
+    color: var(--link_color);
+    text-align: center;
+    text-decoration: none;
+    font-family:  var(--primary_font_family);
+    font-size: 22px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.header-menu-item-link:hover {
+    color: var(--link_hover_color);
+    font-size: 26px;
+}
+
+.header-adv-menu {
+    width: 1600px;
+    margin: auto;
+    display: flex;
+    flex-basis: ;
+    justify-content: space-between;
+    padding: 0px 50px 0px 50px;
+    gap: 40px;
+    background-color: var(--invert_bg_color);
+}
+
+.header-adv-menu-item-link {
+    display: inline-block;
+    color: var(--invert_font_color);
+    text-align: center;
+    text-decoration: none;
+    font-family:  var(--primary_font_family);
+    font-size: 22px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.header-adv-menu-item-link:hover {
+    color: var(--link_hover_color);
+}
