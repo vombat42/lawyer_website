@@ -1,0 +1,51 @@
+{% load static %}
+{% load lawyer_tags %}
+
+<footer>
+    <div class="contact-menu">
+        <button class="contact-btn" id="contactBtn">
+          <img src="{% static 'lawyer/img/message_01.png' %}">
+        </button>
+        <!-- Выпадающее меню -->
+        <div class="contact-menu-list" id="contactList">
+            {% get_contacts as contacts %}
+            {% for c in contacts %}
+                <a class="contact-menu-item" href="{{c.href}}" target="_blank" rel="noopener noreferrer">
+                  <div class="link-icon-txt"><img src={{c.pic.url}} alt="{{c.alt}}"><div>{{c.text}}</div></div>
+                </a>
+            {% endfor %}
+        </div>
+      </div>
+
+      <div class="footer-wrapper">
+    <div class="footer">
+      <div class="footer-block">
+        <div class="footer-text">Юрист Шапиро Владимир Александрович</div>
+        <div class="footer-text">Честно помогаю людям защитить свои права.</div>
+        <div class="footer-text">_________________________________________</div>
+        <div class="footer-text">Написать мне:</div>
+        <div class="footer-link-block">
+            {% get_contacts as contacts %}
+            {% for c in contacts %}
+                <a class="footer-link-img" href="{{c.href}}" target="_blank" rel="noopener noreferrer"><img src={{c.pic.url}} alt="{{c.alt}}"></a>
+            {% endfor %}
+        </div>
+
+      </div>
+
+      <div class="footer-block">
+        {% get_menu as menu %}
+        {% for m in menu %}
+          <a class="footer-link-txt" href="{{m.url_name}}">{{m.title}}</a>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-bottom-wrapper">
+    <div class="footer-bottom">© 2026 Юрист для Вас. Все права защищены.</div>
+  </div>
+
+  <div class="btn-up"></div>
+</footer>

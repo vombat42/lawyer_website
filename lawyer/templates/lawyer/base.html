@@ -14,8 +14,9 @@
 <body>
     {% include './header.html' %}
     {% block content %}{% endblock %}
+    {% include './footer.html' %}
     {% block script %}{% endblock %}
-
     <script src="{% static 'lawyer/js/header.js' %}"></script>
+    <script src="{% static 'lawyer/js/footer.js' %}"></script>
 </body>
 </html>

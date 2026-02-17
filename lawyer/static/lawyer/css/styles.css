@@ -617,6 +617,12 @@ a:hover {
     background: var(--color_services_main);
 }
 
+.form-button:hover {
+    background: var(--color_services_hover);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 
 /* ------------------------------------------------------- */
 /* ----------------------- footer -------------------------*/
