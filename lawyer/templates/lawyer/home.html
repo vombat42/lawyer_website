@@ -31,7 +31,6 @@
                     {% endif %}
                 {% endfor %}
             </div>
-        </div>
     {% endfor %}
 
     <div id="request"></div>
@@ -52,30 +51,54 @@
 
       <div class="request-form-wrapper">
         <div class="request-info-title">Оставить сообщение на сайте:</div>
-        <form class="request-form" action="/submit" method="post">
-          <input class="name" name="name" type="text" placeholder="Ваше имя *" required>
-          <input
-            class="telephone"
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="+7 (___) ___-___-___ *"
-            pattern="\+7\s?[\(]{0,1}[0-9]{3}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
-            title="Формат: +7 (___) ___-__-__"
-            required
-          >
-          <textarea
-                class="message"
-                id="message"
-                name="message"
-                rows="5"
-                maxlength="1000"
-                placeholder="Ваше сообщение *"
-                required
-          ></textarea>
-          <button class="form-button" type="submit">Отправить сообщение</button>
-          <div class="request-info-text">Нажимая "Отправить сообщение", Вы даете согласие на обработку данных!</div>
-        </form>
+            {% if messages %}
+            {% for message in messages %}
+                <div class="request-info-text alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% endif %}
+
+            <form class="request-form"  method="post" action="#request">
+                {% csrf_token %}
+                {% for field in form %}
+                    {{ field }}
+                {% endfor %}
+
+                {% if form.captcha.errors %}
+                    <div class="request-info-text alert-error">
+                        {% for error in form.captcha.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <button class="form-button" type="submit">Отправить сообщение</button>
+                <div class="request-info-text">Нажимая "Отправить сообщение", Вы даете согласие на обработку данных!</div>
+            </form>
+          <!--        <form class="request-form" action="/submit" method="post">-->
+          <!--          <input class="name" name="name" type="text" placeholder="Ваше имя *" required>-->
+          <!--          <input-->
+          <!--            class="telephone"-->
+          <!--            type="tel"-->
+          <!--            id="phone"-->
+          <!--            name="phone"-->
+          <!--            placeholder="+7 (___) ___-___-___ *"-->
+          <!--            pattern="\+7\s?[\(]{0,1}[0-9]{3}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"-->
+          <!--            title="Формат: +7 (___) ___-__-__"-->
+          <!--            required-->
+          <!--          >-->
+          <!--          <textarea-->
+          <!--                class="message"-->
+          <!--                id="message"-->
+          <!--                name="message"-->
+          <!--                rows="5"-->
+          <!--                maxlength="1000"-->
+          <!--                placeholder="Ваше сообщение *"-->
+          <!--                required-->
+          <!--          ></textarea>-->
+          <!--          <button class="form-button" type="submit">Отправить сообщение</button>-->
+<!--        </form>-->
       </div>
 
     </div>

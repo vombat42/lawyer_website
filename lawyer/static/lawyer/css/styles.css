@@ -602,6 +602,7 @@ a:hover {
 .name, .telephone, .message, .form-button {
     height: 60px;
     border-radius: 30px;
+    border: 2px solid var(--color_services_main);
     padding: 10px 30px 10px 30px;
     font-size: var(--font_services_size_desktop);
     margin: 10px 0px 10px 0px;
@@ -623,6 +624,56 @@ a:hover {
     cursor: pointer;
 }
 
+.alert-success {
+    color: blue;
+}
+
+.alert-error {
+    color: red;
+}
+
+.capture {
+    display: flex;
+    justify-content: center;
+    margin: 0px auto 0px auto;
+    height: 50px;
+}
+
+.capture-label {
+ }
+
+.capture-refresh {
+    height: 100%;
+}
+
+.capture-refresh img{
+    height: 100%;
+}
+
+.capture-img {
+    height: 100%;
+}
+
+.capture-img img{
+    height: 100%;
+}
+
+.capture-input {
+    width: 30%;
+    height: 100%;
+}
+
+.capture-input input{
+    height: 100%;
+    width: 100%;
+
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px auto 10px auto;
+    font-size: var(--font_services_size_desktop);
+    margin: 0px 0px 0px 0px;
+    border: 2px solid var(--color_services_main);
+}
 
 /* ------------------------------------------------------- */
 /* ----------------------- footer -------------------------*/
