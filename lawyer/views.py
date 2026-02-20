@@ -26,9 +26,15 @@ class LawyerHome(FormView):
     success_url = reverse_lazy('lawyer:home')  # URL для редиректа после успеха
 
     def form_valid(self, form):
-        # Сохраняем данные
-        form.save()
-        messages.success(self.request, 'Ваше сообщение отправлено.')
+        # Отправляем сообщение
+        if form.is_valid():
+            feedback = form.save(commit=False)
+            feedback.ip_address = get_client_ip(self.request)
+            send_contact_email_message(feedback.name, feedback.phone, feedback.message)
+            # Сохраняем данные
+            feedback.save()
+            messages.success(self.request, 'Ваше сообщение отправлено.')
+
         return super().form_valid(form)
 
 # class FeedbackCreateView(SuccessMessageMixin, CreateView):

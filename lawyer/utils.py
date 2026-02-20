@@ -1,3 +1,5 @@
+from ipaddress import ip_address
+
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
@@ -14,16 +16,14 @@ def get_client_ip(request):
     return ip
 
 
-def send_contact_email_message(subject, email, content, ip, user_id):
+def send_contact_email_message(name, phone, message):
     """
-    Function to send contact form email
+    Function to send feedback form data to email
     """
-    user = User.objects.get(id=user_id) if user_id else None
-    message = render_to_string('system/email/feedback_email_send.html', {
-        'email': email,
-        'content': content,
-        'ip': ip,
-        'user': user,
+    message = render_to_string('lawyer/feedback_email_send.html', {
+        'name': name,
+        'phone': phone,
+        'message': message,
     })
-    email = EmailMessage(subject, message, settings.SERVER_EMAIL, [settings.EMAIL_ADMIN,])
+    email = EmailMessage(f'{name} tel.:{phone}', message, settings.SERVER_EMAIL, [settings.EMAIL_ADMIN,])
     email.send(fail_silently=False)

@@ -41,10 +41,11 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display_links = ('text', 'category', )
 
 
-# @admin.register(Feedback)
-# class FeedbackAdmin(admin.ModelAdmin):
-#     """
-#     Админ-панель модели обратной связи
-#     """
-#     list_display = ('name', 'description', 'value')
-#     list_display_links = ('name', 'description')
+@admin.register(Feedback)
+class FeedbackAdmin(admin.ModelAdmin):
+    """
+    Админ-панель модели обратной связи
+    """
+    list_display = ('name', 'phone', 'time_create', 'ip_address')
+    list_display_links = ('name', 'phone', 'time_create', 'ip_address')
+    readonly_fields = ('time_create', )
