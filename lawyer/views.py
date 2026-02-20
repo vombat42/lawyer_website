@@ -7,7 +7,7 @@ from django.views.generic import CreateView, TemplateView, FormView
 
 from .models import Feedback
 from .forms import FeedbackForm
-from .utils import get_client_ip, send_contact_email_message
+from .utils import get_client_ip, send_contact_email_message, send_telegram_message
 
 
 #----------------------------------------------------------------------------
@@ -30,24 +30,10 @@ class LawyerHome(FormView):
         if form.is_valid():
             feedback = form.save(commit=False)
             feedback.ip_address = get_client_ip(self.request)
-            send_contact_email_message(feedback.name, feedback.phone, feedback.message)
+            # send_contact_email_message(feedback.name, feedback.phone, feedback.message)
+            send_telegram_message(f'Имя: {feedback.name}\nТелефон: {feedback.phone}\nСообщение: {feedback.message}')
             # Сохраняем данные
             feedback.save()
             messages.success(self.request, 'Ваше сообщение отправлено.')
 
         return super().form_valid(form)
-
-# class FeedbackCreateView(SuccessMessageMixin, CreateView):
-#     model = Feedback
-#     form_class = FeedbackCreateForm
-#     success_message = 'Ваше письмо успешно отправлено администрации сайта'
-#     template_name = 'lawyer/feedback.html'
-#     extra_context = {'title': 'Контактная форма'}
-#     success_url = reverse_lazy('home')
-#
-#     def form_valid(self, form):
-#         if form.is_valid():
-#             feedback = form.save(commit=False)
-#             feedback.ip_address = get_client_ip(self.request)
-#             send_contact_email_message(feedback.subject, feedback.email, feedback.content, feedback.ip_address)
-#         return super().form_valid(form)

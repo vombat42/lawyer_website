@@ -145,15 +145,19 @@ CAPTCHA_LENGTH = 5
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
-EMAIL_HOST = "smtp.yandex.ru"
-EMAIL_HOST_PORT = 465
+EMAIL_HOST = my_email_host
+EMAIL_HOST_PORT = my_email_host_port
 EMAIL_HOST_USER = my_email_host_user
 EMAIL_HOST_PASSWORD = my_email_host_password
-# EMAIL_USE_SSL = True
-EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = my_email_use_ssl
+EMAIL_USE_TLS = my_email_use_tls
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = my_email_admin
 
 CSRF_TRUSTED_ORIGINS = my_csrf_trusted_origins
+
+TELEGRAM_TOKEN = my_telegram_token
+TELEGRAM_CHAT_ID = my_telegram_chat_id
+

@@ -32,3 +32,7 @@ my_email_admin = "*****@****.**"
 my_site = 'lawyer_website'
 
 my_csrf_trusted_origins = ['https://192.168.0.1', '127.0.0.1']
+
+
+my_telegram_token = '***********'
+my_telegram_chat_id = 1111111111
