@@ -1,6 +1,6 @@
 from django import template
 
-from lawyer.models import Advantage, Service, ServiceCategory, Contact
+from lawyer.models import Advantage, Service, ServiceCategory, Contact, Metatag
 
 #--------------------------------------------------
 
@@ -14,6 +14,10 @@ menu.append({'title': "Оставить сообщение", 'url_name': '#reque
 contacts = []
 for c in Contact.objects.all():
     contacts.append({'href': c.href, 'pic': c.pic, 'alt': c.alt, 'text': c.text})
+
+metatags = []
+for t in Metatag.objects.all():
+    metatags.append({'name': t.name, 'content': t.content})
 
 # menu2 = [
 #     # {'title': "Главная", 'url_name': 'lawyer:home'},
@@ -39,7 +43,8 @@ def get_menu():
 
 @register.simple_tag
 def get_contacts():
-    return contacts
+    # return contacts
+    return Contact.objects.all()
 
 
 @register.simple_tag
@@ -53,7 +58,13 @@ def get_services():
     services = Service.objects.all()
     return services
 
+
 @register.simple_tag
 def get_service_categories():
     service_categories = ServiceCategory.objects.all()
     return service_categories
+
+
+@register.simple_tag
+def get_metatags():
+    return  Metatag.objects.all()

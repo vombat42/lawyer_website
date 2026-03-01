@@ -99,3 +99,19 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f'Вам письмо от {self.name} ({self.phone})'
+
+
+class Metatag(models.Model):
+    """
+    метатеги сайта
+    """
+    name = models.CharField(max_length=30, blank=False, verbose_name='Метатег')
+    content = models.CharField(max_length=300, blank=True, verbose_name='Содержание')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Метатег"
+        verbose_name_plural = "Метатеги"
+        ordering = ['name',]

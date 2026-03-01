@@ -22,3 +22,7 @@ __pycache__/
 
 # database
 db.sqlite3
+
+# other
+robots.txt
+sitemap.xml

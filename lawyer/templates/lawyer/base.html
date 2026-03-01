@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    {% load lawyer_tags %}
     {% load static %}
     <meta charset="UTF-8">
+    {% get_metatags as metatags %}
+    {% for t in metatags %}
+        <meta name="{{t.name}}" content="{{t.content}}">
+    {% endfor %}
+
     {% if title %}
-      <title>{{ title }}</title>
+        <title>{{ title }}</title>
     {% else %}
-      <title>Без заголовка</title>
+        <title>Без заголовка</title>
     {% endif %}
+
+    <!-- Классический favicon для старых браузеров -->
+    <link rel="icon" href="{% static 'lawyer/img/favicon/favicon.ico' %}" type="image/x-icon">
+    <!-- Современные форматы для новых браузеров -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'lawyer/img/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'lawyer/img/favicon/favicon-16x16.png' %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'lawyer/img/favicon/favicon.svg' %}">
+    <!-- Для устройств Apple (iPhone, iPad) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'lawyer/img/favicon/favicon-128x128.png' %}">
+    <!-- Манифест для Android-устройств -->
+    <link rel="manifest" href="{% static 'lawyer/img/favicon/site.webmanifest' %}">
+
     <link href="{% static 'lawyer/css/styles.css' %}" type="text/css" rel="stylesheet">
-    {% block headplus %}{% endblock %}
 </head>
 <body>
     {% include './header.html' %}

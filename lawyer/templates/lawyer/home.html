@@ -25,7 +25,9 @@
                 {% for s in services %}
                     {% if s.category == c %}
                         <div class="services-item">
-                            <img class="services-item-img" src="{{s.pic.url}}">
+                            {% if s.pic %}
+                                <img class="services-item-img" src="{{s.pic.url}}">
+                            {% endif %}
                             <p>{{s.text}}</p>
                         </div>
                     {% endif %}

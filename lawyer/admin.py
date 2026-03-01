@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from django.contrib import admin
 
-from lawyer.models import Advantage, Feedback, ServiceCategory, Service, Contact
+from lawyer.models import Advantage, Feedback, ServiceCategory, Service, Contact, Metatag
 
 
 @admin.register(Advantage)
@@ -49,3 +49,12 @@ class FeedbackAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'time_create', 'ip_address')
     list_display_links = ('name', 'phone', 'time_create', 'ip_address')
     readonly_fields = ('time_create', )
+
+
+@admin.register(Metatag)
+class MetatagAdmin(admin.ModelAdmin):
+    """
+    Админ-панель модели метатегов сайта
+    """
+    list_display = ('name', 'content')
+    list_display_links = ('name', 'content')
