@@ -63,9 +63,18 @@
 
             <form class="request-form"  method="post" action="#request">
                 {% csrf_token %}
-                {% for field in form %}
-                    {{ field }}
-                {% endfor %}
+                {{ form.name }}
+                {{ form.phone_input }}
+                {{ form.message }}
+                {{ form.phone }}
+                {{ form.captcha }}
+
+                 {% if form.phone.errors %}
+                    <div class="request-info-text alert-error">
+                        <strong>Исправьте следующие ошибки:</strong>
+                        {{ form.phone.errors }}
+                    </div>
+                {% endif %}
 
                 {% if form.captcha.errors %}
                     <div class="request-info-text alert-error">
@@ -104,7 +113,7 @@
       </div>
 
     </div>
-
+    <script src="{% static 'lawyer/js/phone-mask.js' %}"></script>
   </div>
 
 {% endblock %}
