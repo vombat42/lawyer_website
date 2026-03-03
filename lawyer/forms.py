@@ -43,22 +43,9 @@ class FeedbackForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # self.fields['phone'].required = False
-        # Принудительно добавляем поле, если его нет
-        print('INIT------------')
-        if 'phone_input' not in self.fields:
-            print('TTTT-----UUUUU')
-        # для символов оформления номера телефона (скобки, дефисы, пробелы)
-        # Если редактируем существующий объект, показываем его номер в phone_input
-        # if self.instance and self.instance.phone:
-        #     p = self.instance.phone
-        #     if len(p) == 11:
-        #         self.initial['phone_input'] = f"+7 ({p[1:4]}) {p[4:7]}-{p[7:9]}-{p[9:11]}"
-
 
     def clean_phone_input(self):
         phone_input = self.cleaned_data.get('phone_input')
-        print(f"++++++++++++++++++clean_phone_input: {phone_input}")  # отладка
 
         if not phone_input:
             raise forms.ValidationError('Введите номер телефона')
@@ -87,33 +74,9 @@ class FeedbackForm(forms.ModelForm):
         # Устанавливаем phone из очищенного поля phone_input
         if 'phone_input' in self.cleaned_data:
             instance.phone = self.cleaned_data['phone_input']
-            print(f"Устанавливаем phone: {instance.phone}")  # отладка
-
 
         if commit:
             instance.save()
-            print(f"Объект сохранён с phone: {instance.phone}")  # отладка
 
         return instance
 
-
-
-
-
-    #
-    # def clean_phone(self):
-    #     print('*0*****************************')
-    #     phone = self.cleaned_data.get('phone')
-    #     digits_only = ''
-    #     print('*1*****************************', phone)
-    #     if phone:
-    #         # Удаляем всё, кроме цифр и обрезаем до 11
-    #         digits_only = re.sub(r'\D', '', phone)[:11]
-    #         print('*2*****************************', digits_only)
-    #         if len(digits_only) < 11:
-    #             print('*3*****************************', digits_only)
-    #             raise forms.ValidationError('Номер должен содержать 11 цифр')
-    #
-    #     print('*4*****************************', digits_only)
-    #
-    #     return digits_only
