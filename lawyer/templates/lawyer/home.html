@@ -69,10 +69,10 @@
                 {{ form.phone }}
                 {{ form.captcha }}
 
-                 {% if form.phone.errors %}
+                 {% if form.phone_input.errors %}
                     <div class="request-info-text alert-error">
                         <strong>Исправьте следующие ошибки:</strong>
-                        {{ form.phone.errors }}
+                        {{ form.phone_input.errors }}
                     </div>
                 {% endif %}
 
