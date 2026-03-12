@@ -13,8 +13,9 @@ from .utils import get_client_ip, send_contact_email_message, send_telegram_mess
 #----------------------------------------------------------------------------
 
 def index(request):
-    form = FeedbackForm()
-    return render(request, 'lawyer/home.html', context={'title': 'Юрист - Главная',})
+    # form = FeedbackForm()
+    # return render(request, 'lawyer/home.html', context={'title': 'Юрист - Главная',})
+    return render(request, 'lawyer/zaglushka.html', context={'title': 'Юрист - Главная',})
 
 
 class LawyerHome(FormView):
