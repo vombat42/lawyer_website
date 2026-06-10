@@ -115,3 +115,20 @@ class Metatag(models.Model):
         verbose_name = "Метатег"
         verbose_name_plural = "Метатеги"
         ordering = ['name',]
+
+
+class Setting(models.Model):
+    """
+    настройки сайта
+    """
+    is_active = models.BooleanField(default=False, verbose_name="Вкл/Выкл")
+    name = models.CharField(max_length=30, blank=False, verbose_name="Настройка")
+    description = models.TextField(max_length=200, blank=False, verbose_name="Описание")
+
+    class Meta:
+        verbose_name = "Настройка сайта"
+        verbose_name_plural = "Настройки сайта"
+
+    def __str__(self):
+        return self.name
+

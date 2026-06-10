@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from django.contrib import admin
 
-from lawyer.models import Advantage, Feedback, ServiceCategory, Service, Contact, Metatag
+from lawyer.models import Advantage, Feedback, ServiceCategory, Service, Contact, Metatag, Setting
 
 
 @admin.register(Advantage)
@@ -58,3 +58,12 @@ class MetatagAdmin(admin.ModelAdmin):
     """
     list_display = ('name', 'content')
     list_display_links = ('name', 'content')
+
+
+@admin.register(Setting)
+class SettingAdmin(admin.ModelAdmin):
+    """
+    Админ-панель модели настроек сайта
+    """
+    list_display = ('name', 'description', 'is_active')
+    list_display_links = ('name', 'description')

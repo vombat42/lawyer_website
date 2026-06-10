@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, FormView
 
-from .models import Feedback
+from .models import Feedback, Setting
 from .forms import FeedbackForm
 from .utils import get_client_ip, send_contact_email_message, send_telegram_message
 
@@ -31,8 +31,12 @@ class LawyerHome(FormView):
         if form.is_valid():
             feedback = form.save(commit=False)
             feedback.ip_address = get_client_ip(self.request)
-            # send_contact_email_message(feedback.name, feedback.phone, feedback.message)
-            send_telegram_message(f'Имя: {feedback.name}\nТелефон: {feedback.phone}\nСообщение: {feedback.message}')
+            setting_email = Setting.objects.filter(name='email').first()
+            setting_telegram = Setting.objects.filter(name='telegram').first()
+            if setting_email.is_active:
+                send_contact_email_message(feedback.name, feedback.phone, feedback.message)
+            if setting_telegram.is_active:
+                send_telegram_message(f'Имя: {feedback.name}\nТелефон: {feedback.phone}\nСообщение: {feedback.message}')
             # Сохраняем данные
             feedback.save()
             messages.success(self.request, 'Ваше сообщение отправлено.')
